@@ -12,7 +12,7 @@ CREATE TABLE member (
     username VARCHAR(10) NOT NULL,
     hp VARCHAR(12) UNIQUE,
     bthday VARCHAR(30),
-    regdate DATETIME NOT NULL
+    regdate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 DROP TABLE IF EXISTS board;
  
@@ -22,14 +22,20 @@ CREATE TABLE board (
     title VARCHAR(100) NOT NULL,
     content VARCHAR(1000) NOT NULL,
     nickname VARCHAR(10) UNIQUE NOT NULL,
-    regdate DATETIME NOT NULL,
-    updatedate DATETIME NOT NULL,
+    regdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedate DATETIME DEFAULT CURRENT_TIMESTAMP,
     views INT NOT NULL,
-    referrals INT,
+    referrals INT DEFAULT 0,
     FOREIGN KEY (nickname)
         REFERENCES member (nickname)
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-SELECT * FROM member;
-SELECT * FROM board;
+SELECT 
+    *
+FROM
+    member;
+SELECT 
+    *
+FROM
+    board;
